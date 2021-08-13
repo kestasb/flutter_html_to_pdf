@@ -19,11 +19,15 @@ class HtmlToPdfConverter {
 
     fun convert(filePath: String, activity: Activity, callback: Callback) {
         val webView = WebView(activity.applicationContext)
-        val htmlContent = File(filePath).readText(Charsets.UTF_8)
+//        val htmlContent = File(filePath).readText(Charsets.UTF_8)
+//        Log.d("HtmlToPdfConverter", "htmlContent empty: ${htmlContent.substring(startIndex = 0, endIndex = 2000)}")
+//        val encodedHtml: String = Base64.encodeToString(htmlContent.toByteArray(), Base64.NO_PADDING)
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setAllowFileAccess(true);
-        webView.loadDataWithBaseURL(null, htmlContent, "text/HTML", "UTF-8", null)
+//        webView.loadDataWithBaseURL(null, htmlContent, "text/HTML", "UTF-8", null)
+
+        webView.loadUrl("file://$filePath")
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)

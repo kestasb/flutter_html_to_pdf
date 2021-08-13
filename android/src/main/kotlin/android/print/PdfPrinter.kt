@@ -13,7 +13,7 @@ class PdfPrinter(private val printAttributes: PrintAttributes) {
     }
 
 
-    fun print(printAdapter: PrintDocumentAdapter, path: File, fileName: String, callback: PdfPrinter.Callback) {
+    fun print(printAdapter: PrintDocumentAdapter, path: File, fileName: String, callback: Callback) {
         // Support for min API 16 is required
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             printAdapter.onLayout(null, printAttributes, null, object : PrintDocumentAdapter.LayoutResultCallback() {
